@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bellitia Pelle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+        
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: background-color 1s ease;
+            color: white;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('gesturestart', e => e.preventDefault());
+        document.addEventListener('gesturechange', e => e.preventDefault());
+        document.addEventListener('gestureend', e => e.preventDefault());
+
+        window.addEventListener('wheel', e => {
+            if (e.ctrlKey) e.preventDefault();
+        }, { passive: false });
+
+        window.addEventListener('keydown', e => {
+            if ((e.ctrlKey || e.metaKey) && ['+', '-', '=', '0'].includes(e.key)) {
+                e.preventDefault();
+            }
+        });
+    </script>
+    
+    <link rel="icon" href="tela.png" type="image/png" />
+</head>
+
+<body class="relative text-gray-800">
+    
+    <div class="relative z-10">
+        <header class="fixed w-full bg-white shadow-md rounded-b-2xl z-50">
+            <div class="container mx-auto flex justify-between items-center px-6 py-2">
+
+                <div class="flex items-center space-x-3">
+                    <img src="tela.png" alt="Logo Bellitia Pelle" class="h-14 w-14 object-contain" />
+                    <h1 class="text-2xl font-bold text-black" id="site-name">
+                        Bellitia Pelle
+                    </h1>
+                </div>
+
+                <nav class="space-x-6 hidden md:flex">
+                    <a href="#sobre" class="text-black hover:text-gray-700">Sobre</a>
+                    <a href="#servicos" class="text-black hover:text-gray-700">Serviços</a>
+                    <a href="#depoimentos" class="text-black hover:text-gray-700">Depoimentos</a>
+                    <a href="#contato" class="text-black hover:text-gray-700">Contato</a>
+                </nav>
+
+                <button id="menu-toggle" class="md:hidden text-black text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu"
+                class="md:hidden bg-black absolute top-0 left-0 w-full h-screen bg-opacity-90 transform translate-x-full transition-all duration-300">
+                <div class="flex justify-end p-4">
+                    <button id="close-menu" class="text-white text-2xl">
+                        ✕
+                    </button>
+                </div>
+                <div class="flex flex-col items-center">
+                    <a href="#sobre" class="py-4 text-2xl text-white hover:text-gray-300">Sobre</a>
+                    <a href="#servicos" class="py-4 text-2xl text-white hover:text-gray-300">Serviços</a>
+                    <a href="#depoimentos" class="py-4 text-2xl text-white hover:text-gray-300">Depoimentos</a>
+                    <a href="#contato" class="py-4 text-2xl text-white hover:text-gray-300">Contato</a>
+                </div>
+            </div>
+        </header>
+
+
+
+
+        <section class="relative h-screen flex items-center justify-center text-white text-center overflow-hidden">
+            <div class="absolute inset-0 bg-[url('clarice.png')] bg-contain bg-no-repeat bg-center opacity-40 z-0">
+            </div>
+            <div class="relative z-10 flex flex-col items-center animate-fade-in-up mt-80">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white " id="hero-title">Beleza é um poder.</h2>
+                <p class="mb-6 text-white font-bold mb-4" id="hero-description">Venha realçar a sua beleza sem exageros
+                </p>
+                <a href="#contato"
+                    class="bg-black  hover:bg-black text-white py-3 px-6 rounded-full text-lg transition mt-60"
+                    id="hero-cta">Agende com Dra. Clarice Gonçalves</a>
+            </div>
+        </section>
+
+
+
+        <style>
+            @keyframes fadeInUp {
+                0% {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .animate-fade-in-up {
+                animation: fadeInUp 1s ease-out forwards;
+            }
+        </style>
+
+
+
+        <section id="sobre" class="py-20 flex justify-center items-center min-h-screen">
+            <div class="max-w-3xl px-6 text-center">
+                <h3 class="text-3xl font-bold mb-4 text-gray-900" id="about-title">Sobre a Dra. Clarice</h3>
+                <p class="text-gray-700 mb-4" id="about-description">
+                <p class="mb-4">Minha trajetória começou muito antes da Biomedicina. A área da saúde sempre foi uma
+                    paixão. Busquei conhecimento em diferentes áreas da estética e me encontrei na estética avançada.
+                    Sou formada em Biomedicina pela Universidade Regional de Blumenau (FURB) e possuo especialização em
+                    Estética Avançada.</p>
+                <p class="mb-4">Com vasta experiência na área, tenho como missão ajudar cada paciente a se sentir bem
+                    consigo mesmo, realçando a beleza natural sem exageros. Busco sempre unir conhecimento técnico,
+                    sensibilidade e cuidado em cada atendimento.</p>
+                <p class="mb-4">Sou habilitada em diversos tratamentos estéticos, como preenchimento facial,
+                    bioestimuladores, botox e muito mais.</p>
+                <p class="mb-4">Para mim, estética é sobre autoestima, saúde e bem-estar. Meu objetivo é oferecer um
+                    atendimento humanizado e de excelência, respeitando sempre a individualidade de cada paciente.</p>
+            </div>
+        </section>
+
+
+
+        <section id="servicos" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h3 class="text-3xl font-bold mb-12 text-gray-900" id="services-title">
+                    Tratamentos Estéticos
+                </h3>
+
+                <div id="carousel" class="flex overflow-x-scroll scroll-smooth space-x-4 no-scrollbar">
+                    <style>
+                        .no-scrollbar::-webkit-scrollbar {
+                            display: none;
+                        }
+
+                        .no-scrollbar {
+                            -ms-overflow-style: none;
+                            scrollbar-width: none;
+                        }
+                    </style>
+
+                    
+                    <div
+                        class="relative min-w-[300px] snap-start rounded-xl shadow-md p-6 overflow-hidden text-center bg-white/80">
+                        <img src="botox.jpg" class="mx-auto mb-4" />
+                        <h4 class="text-xl font-semibold mb-2" id="service1-title">Botox Nefertiti</h4>
+                        <p class="text-black" id="service1-description">Redefine o contorno facial e promove efeito
+                            lifting na região do pescoço.</p>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110"
+                            onclick="showPrice('service1-price')">
+                            <span class="text-2xl font-bold">$</span>
+                        </div>
+                        <div id="service1-price"
+                            class="hidden mt-4 text-black font-bold text-xl transition-all opacity-0 transform scale-50">
+                            R$ 60,00
+                        </div>
+                    </div>
+
+                    
+                    <div
+                        class="relative min-w-[300px] snap-start rounded-xl shadow-md p-6 overflow-hidden text-center bg-white/80">
+                        <img src="harmonizacao.jpg" class="mx-auto mb-4" />
+                        <h4 class="text-xl font-semibold mb-2" id="service2-title">Harmonização Facial</h4>
+                        <p class="text-black" id="service2-description">Equilíbrio dos traços com técnicas de
+                            preenchimento e bioestimuladores.</p>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110"
+                            onclick="showPrice('service2-price')">
+                            <span class="text-2xl font-bold">$</span>
+                        </div>
+                        <div id="service2-price"
+                            class="hidden mt-4 text-black font-bold text-xl transition-all opacity-0 transform scale-50">
+                            R$ 120,00
+                        </div>
+                    </div>
+
+                    
+                    <div
+                        class="relative min-w-[300px] snap-start rounded-xl shadow-md p-6 overflow-hidden text-center bg-white/80">
+                        <img src="labio.jpg" class="mx-auto mb-4" />
+                        <h4 class="text-xl font-semibold mb-2" id="service3-title">Preenchimento Labial</h4>
+                        <p class="text-black" id="service3-description">Volume e contorno natural para lábios mais
+                            expressivos e hidratados.</p>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110"
+                            onclick="showPrice('service3-price')">
+                            <span class="text-2xl font-bold">$</span>
+                        </div>
+                        <div id="service3-price"
+                            class="hidden mt-4 text-black font-bold text-xl transition-all opacity-0 transform scale-50">
+                            R$ 120,00
+                        </div>
+                    </div>
+
+                    
+                    <div
+                        class="relative min-w-[300px] snap-start rounded-xl shadow-md p-6 overflow-hidden text-center bg-white/80">
+                        <img src="fox.jpg" class="mx-auto mb-4" />
+                        <h4 class="text-xl font-semibold mb-2" id="service4-title">Fox Eyes</h4>
+                        <p class="text-black" id="service4-description">O procedimento Fox Eyes é uma técnica de
+                            harmonização facial que visa alongar e levantar o olhar, criando um efeito de "olhos de
+                            raposa".</p>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110"
+                            onclick="showPrice('service4-price')">
+                            <span class="text-2xl font-bold">$</span>
+                        </div>
+                        <div id="service4-price"
+                            class="hidden mt-4 text-black font-bold text-xl transition-all opacity-0 transform scale-50">
+                            R$ 120,00
+                        </div>
+                    </div>
+
+                    
+                    <div
+                        class="relative min-w-[300px] snap-start rounded-xl shadow-md p-6 overflow-hidden text-center bg-white/80">
+                        <img src="bioestim.jpg" class="mx-auto mb-4" />
+                        <h4 class="text-xl font-semibold mb-2" id="service5-title">Bioestimuladores de Colágeno</h4>
+                        <p class="text-black" id="service5-description">Estimula a produção natural de colágeno para uma
+                            pele mais firme.</p>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110"
+                            onclick="showPrice('service5-price')">
+                            <span class="text-2xl font-bold">$</span>
+                        </div>
+                        <div id="service5-price"
+                            class="hidden mt-4 text-black font-bold text-xl transition-all opacity-0 transform scale-50">
+                            R$ 120,00
+                        </div>
+                    </div>
+
+                    
+                    <div
+                        class="relative min-w-[300px] snap-start rounded-xl shadow-md p-6 overflow-hidden text-center bg-white/80">
+                        <img src="toxina .jpg" class="mx-auto mb-4" />
+                        <h4 class="text-xl font-semibold mb-2" id="service6-title">Toxina Botulínica</h4>
+                        <p class="text-black" id="service6-description">Suavização de linhas de expressão, promovendo
+                            rejuvenescimento.</p>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110"
+                            onclick="showPrice('service6-price')">
+                            <span class="text-2xl font-bold">$</span>
+                        </div>
+                        <div id="service6-price"
+                            class="hidden mt-4 text-black font-bold text-xl transition-all opacity-0 transform scale-50">
+                            R$ 120,00
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+       
+        <script>
+            const carousel = document.getElementById("carousel");
+            let scrollAmount = 0;
+            const scrollStep = 300; 
+            const interval = 4000; 
+
+            setInterval(() => {
+                if (scrollAmount + scrollStep >= carousel.scrollWidth - carousel.clientWidth) {
+                    scrollAmount = 0; 
+                } else {
+                    scrollAmount += scrollStep;
+                }
+
+                carousel.scrollTo({
+                    left: scrollAmount,
+                    behavior: "smooth",
+                });
+            }, interval);
+        </script>
+
+
+        <script>
+            function showPrice(id) {
+                const priceElement = document.getElementById(id);
+                priceElement.classList.toggle('hidden');
+                priceElement.classList.toggle('opacity-0');
+                priceElement.classList.toggle('scale-50');
+                priceElement.classList.add('transition-all', 'duration-500', 'ease-out');
+            }
+        </script>
+
+        <section id="depoimentos" class="py-20 px-4 max-w-5xl mx-auto text-black" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-center mb-10">Depoimentos</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-sm">
+                <blockquote class="bg-white p-6 rounded-xl shadow text-black italic">"Amando o resultado, super índico.
+                    Achei o tratamento super tranquilo."<br><span
+                        class="block text-right mt-2 not-italic font-semibold">— Josi</span></blockquote>
+                <blockquote class="bg-white p-6 rounded-xl shadow text-black italic">“Ótimo atendimento,profissional
+                    excelente com transparência e honestidade. Na depilação a laser na primeira sessão já diminuiu 60%
+                    dos pelos nas axilas fiquei maravilhada”<br><span
+                        class="block text-right mt-2 not-italic font-semibold">— Carla</span></blockquote>
+                <blockquote class="bg-white p-6 rounded-xl shadow text-black italic">“Profissional atenciosa e um
+                    ambiente muito agradável. Já fiz alguns procedimentos e amei os resultados. Super
+                    recomendo!”<br><span class="block text-right mt-2 not-italic font-semibold">— Larissa</span>
+                </blockquote>
+                <blockquote class="bg-white p-6 rounded-xl shadow text-black italic">“Profissional maravilhosa, fiquei
+                    com boca de boneca!<br><span class="block text-right mt-2 not-italic font-semibold">— Erica</span>
+                </blockquote>
+            </div>
+        </section>
+
+
+        <section id="contato" class="py-20 bg-rose-20">
+            <div class="container mx-auto px-6 text-center">
+                <p class="mb-8 text-black" id="contact-description">
+                    Entre em contato pelo WhatsApp e marque seu momento de beleza.
+                </p>
+                <p class="mb-8 text-black" id="contact-description">
+                    Visite meu Instagram para acompanhar as novidades!
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="https://wa.me/55999267620" target="_blank"
+                        class="inline-block bg-black hover:bg-black text-white py-3 px-8 rounded-full text-lg transition"
+                        id="whatsapp-button">WhatsApp</a>
+
+                    <a href="https://www.instagram.com/seuusuario" target="_blank"
+                        class="inline-block bg-black hover:bg-rose-500 text-white py-3 px-8 rounded-full text-lg transition"
+                        id="instagram-button">Instagram</a>
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-black text-white py-6 text-center rounded-tl-xl rounded-tr-xl">
+            <p id="footer-text">&copy; Bellitia Pelle Estética Avançada. Todos os direitos reservados.</p>
+        </footer>
+
+        <script>
+            function updateList(listId, items) {
+                const list = document.getElementById(listId);
+                list.innerHTML = "";
+                items.forEach(item => {
+                    const li = document.createElement("li");
+                    li.textContent = item;
+                    list.appendChild(li);
+                });
+            }
+
+            const menuToggleButton = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenuButton = document.getElementById('close-menu');
+            const mobileLinks = document.querySelectorAll('#mobile-menu a');
+
+            menuToggleButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+
+            closeMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').slice(1);
+                    const targetSection = document.getElementById(targetId);
+
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+
+                    mobileMenu.classList.add('translate-x-full');
+                });
+            });
+        </script>
