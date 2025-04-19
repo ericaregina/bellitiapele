@@ -15,7 +15,7 @@
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: amber-50;
+            background-color: #e2d8c4;
             transition: background-color 1s ease;
 
         }
@@ -52,7 +52,7 @@
         <header class="fixed w-full shadow-md rounded-b-2xl z-50" style="background-color: #c8b08c;">
             <div class="container mx-auto flex justify-between items-center px-6 py-2">
 
-                <!-- Logo e Nome -->
+               
                 <div class="flex items-center space-x-3 -ml-6">
                     <img src="tela.png" alt="Logo Bellitia Pelle" class="h-14 w-14 object-contain" />
                     <h1 class="text-2xl font-bold text-black" id="site-name">Bellitia Pelle</h1>
@@ -76,17 +76,17 @@
             </div>
 
             <div id="mobile-menu"
-                class="md:hidden bg-black absolute top-0 left-0 w-full h-screen bg-opacity-90 transform translate-x-full transition-all duration-300">
+                class="md:hidden bg-white absolute top-0 left-0 w-full h-screen bg-opacity-80 transform translate-x-full transition-all duration-300">
                 <div class="flex justify-end p-4">
-                    <button id="close-menu" class="text-white text-2xl">
+                    <button id="close-menu" class="text-black text-2xl">
                         ✕
                     </button>
                 </div>
                 <div class="flex flex-col items-center">
-                    <a href="#sobre" class="py-4 text-2xl text-white hover:text-gray-300">Sobre</a>
-                    <a href="#servicos" class="py-4 text-2xl text-white hover:text-gray-300">Serviços</a>
-                    <a href="#depoimentos" class="py-4 text-2xl text-white hover:text-gray-300">Depoimentos</a>
-                    <a href="#contato" class="py-4 text-2xl text-white hover:text-gray-300">Contato</a>
+                    <a href="#sobre" class="py-4 text-2xl text-black hover:black">Sobre</a>
+                    <a href="#servicos" class="py-4 text-2xl text-black hover:text-black">Serviços</a>
+                    <a href="#depoimentos" class="py-4 text-2xl text-black hover:text-black">Depoimentos</a>
+                    <a href="#contato" class="py-4 text-2xl text-black hover:text-black">Contato</a>
                 </div>
             </div>
         </header>
@@ -101,7 +101,7 @@
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 text-black " id="hero-title">Aqui, sua beleza e confiança
                     são a minha prioridade.</h2>
                 <p class="text-black  italic mb-4" id="hero-description">
-                 Venha realçar a sua beleza sem exageros
+                    Venha realçar a sua beleza sem exageros
                 </p>
 
 
@@ -195,7 +195,15 @@
                         }
                     </style>
 
+                    <div
+                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
+                        <img src="preventivo.jpg" class="mx-auto mb-4" />
+                        <h4 class="text-xl font-semibold mb-2" id="service8-title">Botox Terço Superior </h4>
+                        <p class="text-black" id="service8-description">O Botox no terço superior suaviza rugas na
+                            testa, entre as sobrancelhas e ao redor dos olhos, relaxando os músculos e prevenindo novas
+                            linhas.</p>
 
+                    </div>
                     <div
                         class="relative min-w-[300px] max-w-sm snap-start rounded-2xl  p-6 overflow-hidden text-center bg-white/transparência">
                         <img src="botox.jpg" class="mx-auto mb-4" />
@@ -215,25 +223,7 @@
 
                     </div>
 
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-bg-transparent">
-                        <img src="preventivo.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service8-title">Botox Preventivo</h4>
-                        <p class="text-black" id="service8-description">O Botox preventivo evita rugas e linhas de
-                            expressão em pessoas a partir dos 20 anos. Relaxa os músculos, preserva a pele jovem e
-                            retarda o envelhecimento, com resultados sutis e naturais.</p>
 
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="preventivo.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service8-title">Botox Terço Superior </h4>
-                        <p class="text-black" id="service8-description">O Botox no terço superior suaviza rugas na
-                            testa, entre as sobrancelhas e ao redor dos olhos, relaxando os músculos e prevenindo novas
-                            linhas.</p>
-
-                    </div>
 
                     <div
                         class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
@@ -242,6 +232,16 @@
                         <p class="text-black" id="service8-description">O mesotox combina toxina botulínica com
                             mesoterapia, aplicado superficialmente para melhorar a textura da pele, reduzir poros,
                             oleosidade e rugas finas. Ideal para rosto, pescoço e colo.</p>
+
+                    </div>
+
+                    <div
+                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-bg-transparent">
+                        <img src="preventivo.jpg" class="mx-auto mb-4" />
+                        <h4 class="text-xl font-semibold mb-2" id="service8-title">Botox Preventivo</h4>
+                        <p class="text-black" id="service8-description">O Botox preventivo evita rugas e linhas de
+                            expressão em pessoas a partir dos 20 anos. Relaxa os músculos, preserva a pele jovem e
+                            retarda o envelhecimento, com resultados sutis e naturais.</p>
 
                     </div>
 
@@ -363,7 +363,7 @@
 
                     </div>
                     <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
+                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-#e2d8c4">
                         <video autoplay muted loop playsinline class="mx-auto mb-4 rounded-xl">
                             <source src="depilacao.mp4" type="video/mp4" />
                             Seu navegador não suporta vídeo HTML5.
@@ -492,7 +492,7 @@
         </script>
 
 
-        <section id="depoimentos" class="py-20 px-4 max-w-5xl mx-auto text-black" data-aos="fade-up">
+        <section id="depoimentos" class="pt-4 pb-20 px-4 max-w-5xl mx-auto text-black" data-aos="fade-up">
             <h2 class="text-2xl font-bold text-center mb-10">Depoimentos</h2>
             <div class="grid md:grid-cols-2 gap-8 text-sm">
                 <blockquote class="bg-white p-6 rounded-xl shadow text-black italic">"Amando o resultado, super índico.
@@ -528,13 +528,55 @@
                         425 - 4º andar</strong>.
                 </p>
 
+                <style>
+                    @keyframes fade-in-up {
+                        0% {
+                            opacity: 0;
+                            transform: translateY(40px);
+                        }
+
+                        100% {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+
+                    .fade-in-up {
+                        animation: fade-in-up 1.5s ease-out forwards;
+                    }
+                </style>
+
                 <div
-                    class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent w-full max-w-[600px] mx-auto">
-                    <video autoplay muted loop playsinline class="mx-auto mb-4 rounded-xl w-full h-auto">
+                    class="relative min-w-[300px] snap-start rounded-xl p-6 overflow-hidden text-center bg-transparent w-full max-w-[600px] mx-auto">
+
+                    <video id="videoReveal" autoplay muted loop playsinline
+                        class="mx-auto mb-4 rounded-xl w-full h-auto invisible">
                         <source src="studio.mp4" type="video/mp4" />
                         Seu navegador não suporta vídeo HTML5.
                     </video>
                 </div>
+
+                <script>
+                    const video = document.getElementById("videoReveal");
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.remove("fade-in-up");
+                                void entry.target.offsetWidth; 
+                                entry.target.classList.remove("invisible");
+                                entry.target.classList.add("fade-in-up");
+                            } else {
+                                entry.target.classList.add("invisible");
+                                entry.target.classList.remove("fade-in-up");
+                            }
+                        });
+                    }, {
+                        threshold: 0.4
+                    });
+
+                    observer.observe(video);
+                </script>
 
 
 
@@ -543,23 +585,18 @@
                     Visite meu Instagram e WhatsApp para agendamentos e novidades!
                 </p>
 
-                <!-- Links sociais com ícones bonitos e centralizados -->
                 <div class="flex justify-center items-center gap-6 mt-6">
-                    <!-- WhatsApp -->
-                    <!-- WhatsApp -->
                     <a href="https://wa.me/554799267620?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20tratamentos%20estéticos."
                         target="_blank"
                         class="w-14 h-14 flex items-center justify-center rounded-full bg-amber-50 hover:bg-amber-50 shadow-md hover:shadow-lg">
                         <i class="fab fa-whatsapp text-black text-2xl"></i>
                     </a>
 
-                    <!-- Instagram -->
                     <a href="https://www.instagram.com/esteticabellitiapelle" target="_blank"
                         class="w-14 h-14 flex items-center justify-center rounded-full bg-amber-50 hover:bg-amber-50 transition-shadow shadow-md hover:shadow-lg">
                         <i class="fab fa-instagram text-black text-2xl"></i>
                     </a>
 
-                    <!-- Localização com imagem personalizada -->
                     <a href="https://maps.app.goo.gl/7NchX6LeCrCwCacX6" target="_blank"
                         class="w-14 h-14 flex items-center justify-center rounded-full bg-amber-50 bg-cover bg-center transition-shadow shadow-md hover:shadow-lg"
                         style="background-image: url('loca.jpg');">
@@ -571,13 +608,7 @@
                         style="background-image: url('loca.jpg');">
                         <i class="fas fa-map-marker-alt text-black text-xl"></i>
                     </a>
-
-
                 </div>
-
-
-
-
             </div>
         </section>
 
