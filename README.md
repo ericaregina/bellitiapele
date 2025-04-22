@@ -30,5 +30,5 @@ O site é moderno, leve e responsivo, oferecendo uma excelente experiência em d
 
 Entre em contato para sugestões, dúvidas ou parcerias:
 
-Email: contato@bellitiapelle.com.br
+Email: ribeiroericacomc@gmail.com
 
