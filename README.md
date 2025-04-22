@@ -32,4 +32,3 @@ Entre em contato para sugestões, dúvidas ou parcerias:
 
 Email: contato@bellitiapelle.com.br
 
-Instagram: @dra.claricegoncalves
