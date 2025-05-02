@@ -4,7 +4,7 @@
 
 ## 🌐 Acesse o site
 
-👉 [https://bellitiapelle.vercel.app](https://bellitiapelle.vercel.app)
+👉 [bellitiapelle.com.br](https://bellitiapelle.com.br)
 
 ## ✨ Sobre o projeto
 
