@@ -18,13 +18,6 @@ O site é moderno, leve e responsivo, oferecendo uma excelente experiência em d
 - [Vercel](https://vercel.com/) – Hospedagem e deploy contínuo
 - [React Icons](https://react-icons.github.io/react-icons/) – Biblioteca de ícones
 
-## 🚀 Como rodar localmente
-
-1. Clone o repositório:
-
-   ```bash
-   git clone https://github.com/seu-usuario/bellitiapelle.git
-
    
 ## 📞 Contato
 
