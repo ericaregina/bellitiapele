@@ -1,657 +1,535 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth">
-
-
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="google-site-verification" content="8STefu8uvGnLOLu5PdtCrsefeLPzpmSY1_n0OYFgmUg" />
-    <title>Bellitia Pelle</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Bellitia Pelle — Dra. Clarice Gonçalves</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --cream:      #f6ede1;
+      --gold:       #b8924a;
+      --gold-light: #d4ab6a;
+      --gold-pale:  #f2e4cf;
+      --dark:       #18120c;
+      --muted:      #7a6555;
+      --white:      #fdfaf6;
+      --nav-h:      70px;
+      --r:          16px;
+      --rl:         28px;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--dark); overflow-x:hidden; }
+    h1,h2,h3,h4 { font-family:'Cormorant Garamond',serif; }
 
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #e2d8c4;
-            transition: background-color 1s ease;
+    /* NAV */
+    .nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      height:var(--nav-h);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 clamp(1.25rem,5vw,3rem);
+      transition:background .4s, box-shadow .4s;
+    }
+    .nav.sc { background:rgba(246,237,225,.95); backdrop-filter:blur(14px); box-shadow:0 1px 0 rgba(184,146,74,.18); }
+    .nav-logo { display:flex; align-items:center; gap:.6rem; text-decoration:none; }
+    .nav-logo img { width:38px; height:38px; object-fit:contain; border-radius:50%; }
+    .nav-logo-txt { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--dark); letter-spacing:.04em; }
+    .nav-links { display:flex; gap:2.2rem; list-style:none; }
+    .nav-links a { font-size:.75rem; font-weight:500; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); text-decoration:none; position:relative; transition:color .3s; }
+    .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:var(--gold); transition:width .3s; }
+    .nav-links a:hover { color:var(--dark); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-cta { font-size:.72rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--white); background:var(--dark); padding:.55rem 1.4rem; border-radius:100px; text-decoration:none; transition:background .3s, transform .2s; white-space:nowrap; }
+    .nav-cta:hover { background:var(--gold); transform:translateY(-1px); }
+    .hbg { display:none; background:none; border:none; cursor:pointer; padding:.4rem; flex-direction:column; gap:5px; }
+    .hbg span { display:block; width:22px; height:1.5px; background:var(--dark); transition:transform .3s, opacity .3s; }
+    .hbg.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .hbg.open span:nth-child(2) { opacity:0; }
+    .hbg.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    .mob { display:none; position:fixed; inset:0; z-index:199; background:var(--cream); flex-direction:column; align-items:center; justify-content:center; gap:2.5rem; }
+    .mob.open { display:flex; }
+    .mob a { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:300; color:var(--dark); text-decoration:none; letter-spacing:.05em; transition:color .3s; }
+    .mob a:hover { color:var(--gold); }
+    .mob .mcta { font-family:'DM Sans',sans-serif; font-size:.8rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--white); background:var(--gold); padding:.8rem 2.2rem; border-radius:100px; }
 
-        }
+    /* HERO */
+    .hero { min-height:100dvh; display:flex; flex-direction:column; justify-content:center; align-items:center; position:relative; overflow:hidden; text-align:center; padding:calc(var(--nav-h) + 3rem) clamp(1.5rem,5vw,4.5rem) 4rem clamp(1.5rem,6vw,5rem); }
+    .hero::before { content:''; position:absolute; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle,rgba(212,171,106,.18) 0%,transparent 70%); top:-100px; left:-150px; pointer-events:none; }
+    .hero-tag { display:inline-flex; align-items:center; gap:.6rem; font-size:.72rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:1.8rem; }
+    .hero-tag::before { content:''; width:28px; height:1px; background:var(--gold); }
+    .hero-title { font-size:clamp(2.6rem,4.5vw,5rem); font-weight:300; line-height:1.1; letter-spacing:-.01em; color:var(--dark); margin-bottom:1.4rem; max-width:800px; }
+    .hero-title em { font-style:italic; color:var(--gold); }
+    .hero-sub { font-size:.92rem; color:var(--muted); line-height:1.8; max-width:500px; margin:0 auto 2.8rem; font-weight:300; }
+    .hero-actions { display:flex; align-items:center; flex-wrap:wrap; gap:1.2rem; justify-content:center; }
+    .btn-dk { display:inline-flex; align-items:center; gap:.6rem; font-size:.75rem; font-weight:500; letter-spacing:.13em; text-transform:uppercase; color:var(--white); background:var(--dark); padding:.9rem 2rem; border-radius:100px; text-decoration:none; transition:background .3s, transform .2s; }
+    .btn-dk:hover { background:var(--gold); transform:translateY(-2px); }
+    .btn-gh { display:inline-flex; align-items:center; gap:.5rem; font-size:.75rem; font-weight:500; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .3s; }
+    .btn-gh i { transition:transform .3s; }
+    .btn-gh:hover { color:var(--gold); }
+    .btn-gh:hover i { transform:translateX(4px); }
+    .hero-stats { display:flex; gap:2rem; margin-top:3.5rem; padding-top:2rem; border-top:1px solid rgba(184,146,74,.2); justify-content:center; flex-wrap:wrap; }
+    .sv { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:600; color:var(--dark); display:block; line-height:1; }
+    .sl { font-size:.7rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:.3rem; display:block; }
+   .hero-card { 
+  background:var(--white); 
+  border-radius:var(--r); 
+  padding:1.1rem 1.5rem; 
+  box-shadow:0 20px 50px rgba(24,18,12,.13); 
+  display:flex; 
+  align-items:center; 
+  gap:.9rem; 
+  min-width:210px; 
+  margin-top:3rem; 
+  justify-content:center; 
+  text-align:center;
+}
+    .hci { width:42px; height:42px; border-radius:50%; background:var(--gold-pale); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .hci i { color:var(--gold); font-size:.9rem; }
+   .hct { 
+  font-family:'Cormorant Garamond',serif; 
+  font-size:.95rem; 
+  font-weight:600; 
+  color:var(--dark); 
+  text-align:center;
+}
 
-        h1,
-        h2,
-        h3 {
-            font-family: 'Playfair Display', serif;
-        }
-    </style>
+.hcs { 
+  font-size:.72rem; 
+  color:var(--muted); 
+  margin-top:.1rem; 
+  text-align:center;
+}
+    .hero-scroll { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:.7rem; font-size:.68rem; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); z-index:3; }
+    .sbar { width:1px; height:36px; background:linear-gradient(to bottom,var(--gold),transparent); animation:sa 2s ease-in-out infinite; }
+    @keyframes sa { 0%,100%{opacity:.35} 50%{opacity:1} }
 
-    <script>
-        document.addEventListener('gesturestart', e => e.preventDefault());
-        document.addEventListener('gesturechange', e => e.preventDefault());
-        document.addEventListener('gestureend', e => e.preventDefault());
+    /* ORNAMENT */
+    .orn { display:flex; align-items:center; gap:1rem; padding:2.5rem clamp(1.5rem,6vw,5rem); }
+    .orn-l { flex:1; height:1px; background:linear-gradient(to right,transparent,var(--gold-light),transparent); }
+    .orn-s { font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--gold); }
 
-        window.addEventListener('wheel', e => {
-            if (e.ctrlKey) e.preventDefault();
-        }, { passive: false });
+    /* WRAP */
+    .w { max-width:1160px; margin:0 auto; padding:0 clamp(1.25rem,5vw,3rem); }
+    .st { font-size:.72rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:.9rem; display:flex; align-items:center; gap:.7rem; }
+    .st::before { content:''; width:22px; height:1px; background:var(--gold); }
+    .sh { font-size:clamp(2rem,3.5vw,3.2rem); font-weight:300; line-height:1.15; color:var(--dark); margin-bottom:1.2rem; }
+    .sh em { font-style:italic; color:var(--gold); }
 
-        window.addEventListener('keydown', e => {
-            if ((e.ctrlKey || e.metaKey) && ['+', '-', '=', '0'].includes(e.key)) {
-                e.preventDefault();
-            }
-        });
-    </script>
+    /* ABOUT */
+    #sobre { padding:7rem 0; }
+    .ag { display:grid; grid-template-columns:5fr 7fr; gap:clamp(2rem,6vw,5rem); align-items:start; }
+    .aic { position:relative; }
+    .aic::before { content:''; position:absolute; top:-30px; left:-30px; width:calc(100% + 30px); height:calc(100% + 30px); border-radius:var(--rl); background:radial-gradient(ellipse at 40% 30%,rgba(212,171,106,.22) 0%,transparent 65%); z-index:-1; }
+    .aif { border-radius:var(--rl); overflow:hidden; }
+    .aif img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center top; filter:brightness(.97) sepia(.05); display:block; }
+    .abadge { position:absolute; bottom:1.5rem; right:-1.2rem; background:var(--gold); border-radius:var(--r); padding:1.2rem 1.4rem; text-align:center; box-shadow:0 12px 32px rgba(184,146,74,.35); }
+    .abadge strong { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:600; color:var(--white); display:block; line-height:1; }
+    .abadge span { font-size:.67rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.82); }
+    .at p { font-size:.9rem; color:var(--muted); line-height:1.85; font-weight:300; margin-bottom:1.1rem; }
+    .creds { margin:1.8rem 0; border-top:1px solid rgba(184,146,74,.2); border-bottom:1px solid rgba(184,146,74,.2); padding:1.5rem 0; }
+    .creds h4 { font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+    .cl { list-style:none; display:flex; flex-direction:column; gap:.65rem; }
+    .cl li { font-size:.84rem; color:var(--muted); padding-left:1.2rem; position:relative; line-height:1.5; }
+    .cl li::before { content:'—'; position:absolute; left:0; color:var(--gold); }
 
-    <link rel="icon" href="tela.png" type="image/png" />
+    /* SERVICES */
+    #servicos { padding:7rem 0; background:var(--dark); position:relative; overflow:hidden; }
+    #servicos::before { content:'BELLITIA'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'Cormorant Garamond',serif; font-size:clamp(8rem,16vw,18rem); font-weight:600; letter-spacing:.1em; color:rgba(255,255,255,.028); pointer-events:none; white-space:nowrap; }
+    #servicos .st { color:var(--gold-light); }
+    #servicos .st::before { background:var(--gold-light); }
+    #servicos .sh { color:var(--cream); }
+    .ssub { font-size:.9rem; color:rgba(246,237,225,.5); font-weight:300; max-width:400px; line-height:1.75; margin-bottom:3rem; }
+    .to { overflow:hidden; margin:0 clamp(-1.25rem,-5vw,-3rem); padding:0 clamp(1.25rem,5vw,3rem) 1rem; }
+    .tr { display:flex; gap:1.25rem; overflow-x:scroll; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; cursor:grab; }
+    .tr::-webkit-scrollbar { display:none; }
+    .tr:active { cursor:grabbing; }
+    .sc { flex:0 0 clamp(240px,72vw,290px); scroll-snap-align:start; background:rgba(255,255,255,.05); border:1px solid rgba(184,146,74,.18); border-radius:var(--r); overflow:hidden; transition:border-color .35s, transform .35s; }
+    .sc:hover { border-color:rgba(184,146,74,.55); transform:translateY(-5px); }
+    .sci { width:100%; height:200px; overflow:hidden; }
+    .sci img, .sci video { width:100%; height:100%; object-fit:cover; filter:brightness(.85) sepia(.08); transition:transform .6s, filter .4s; }
+    .sc:hover .sci img, .sc:hover .sci video { transform:scale(1.05); filter:brightness(.96) sepia(.03); }
+    .scb { padding:1.3rem 1.4rem; }
+    .sct { font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:var(--cream); margin-bottom:.5rem; }
+    .scd { font-size:.8rem; color:rgba(246,237,225,.5); line-height:1.7; font-weight:300; }
+    .tn { display:flex; gap:.6rem; justify-content:flex-end; margin-top:2rem; }
+    .tb { width:44px; height:44px; border-radius:50%; border:1px solid rgba(184,146,74,.35); background:transparent; color:var(--gold-light); font-size:.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .3s, border-color .3s, color .3s; }
+    .tb:hover { background:var(--gold); border-color:var(--gold); color:var(--white); }
+
+
+  /* TESTIMONIALS */
+#depoimentos { padding:7rem 0; background:var(--white); }
+.tg { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-top:3rem; }
+.tc { 
+  background:var(--cream); 
+  border:1px solid rgba(184,146,74,.15); 
+  border-radius:var(--r); 
+  padding:1.8rem; 
+  position:relative; 
+  transition:box-shadow .3s, transform .3s; 
+}
+.tc:hover { box-shadow:0 14px 40px rgba(184,146,74,.13); transform:translateY(-3px); }
+.tc::before { 
+  content:'\201C'; 
+  position:absolute; 
+  top:.8rem; 
+  right:1.2rem; 
+  font-family:'Cormorant Garamond',serif; 
+  font-size:5rem; 
+  color:var(--gold-pale); 
+  line-height:1; 
+  pointer-events:none; 
+}
+.tst { display:flex; gap:3px; margin-bottom:.9rem; }
+.tst i { font-size:.6rem; color:var(--gold); }
+.tc p { font-size:.88rem; color:var(--muted); line-height:1.78; font-style:italic; font-weight:300; }
+.ta { margin-top:1.3rem; font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:600; color:var(--dark); }
+
+/* Removidas todas as regras .dk - agora todos são cream */
+.tc.wide { grid-column:span 2; }
+
+    /* CONTACT */
+    #contato { padding:7rem 0; }
+    .cog { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,6vw,5rem); align-items:start; }
+    .cot p { font-size:.9rem; color:var(--muted); line-height:1.8; font-weight:300; margin-bottom:1rem; }
+    .locs { display:flex; flex-direction:column; gap:1rem; margin:2rem 0; }
+    .li { display:flex; gap:.9rem; align-items:flex-start; }
+    .lic { width:36px; height:36px; border-radius:10px; background:var(--gold-pale); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+    .lic i { font-size:.75rem; color:var(--gold); }
+    .lit strong { font-size:.78rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--dark); display:block; margin-bottom:.15rem; }
+    .lit span { font-size:.85rem; color:var(--muted); }
+    .sr { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:2.5rem; }
+    .sb { display:inline-flex; align-items:center; gap:.55rem; font-size:.74rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--dark); border:1px solid rgba(184,146,74,.3); border-radius:100px; padding:.65rem 1.2rem; text-decoration:none; transition:background .3s, border-color .3s, color .3s; }
+    .sb i { color:var(--gold); font-size:.95rem; transition:color .3s; }
+    .sb:hover { background:var(--dark); border-color:var(--dark); color:var(--cream); }
+    .sb:hover i { color:var(--gold-light); }
+    .cvid { border-radius:var(--rl); overflow:hidden; position:relative; }
+    .cvid video { width:100%; display:block; filter:brightness(.9) sepia(.05); }
+    .cvo { position:absolute; bottom:0; left:0; right:0; padding:2rem 1.8rem; background:linear-gradient(to top,rgba(24,18,12,.82),transparent); }
+    .cvo p { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:300; font-style:italic; color:var(--cream); line-height:1.45; }
+
+    /* FOOTER */
+    footer { background:var(--dark); padding:3rem clamp(1.25rem,5vw,3rem); text-align:center; }
+    .fb { font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:300; color:var(--gold-light); letter-spacing:.08em; }
+    .fs { font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(246,237,225,.3); margin-top:.3rem; }
+    .fd { width:36px; height:1px; background:var(--gold); margin:1.4rem auto; opacity:.4; }
+    .fc { font-size:.72rem; color:rgba(246,237,225,.22); letter-spacing:.05em; }
+
+    /* REVEAL */
+    .r { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+    .r.on { opacity:1; transform:none; }
+    .r.d1 { transition-delay:.1s; }
+    .r.d2 { transition-delay:.2s; }
+    .r.d3 { transition-delay:.3s; }
+
+    /* ── RESPONSIVE: TABLET ── */
+   /* ── RESPONSIVE: TABLET ── */
+@media(max-width:900px) {
+  .nav-links, .nav-cta { display:none; }
+  .hbg { display:flex; }
+  
+  .hero { 
+    min-height:unset; 
+    padding:2rem clamp(1.25rem,5vw,3rem) 4rem; 
+    gap:1.5rem;
+  }
+  .hero-content { padding:0; }
+  .hero-sub { max-width:100%; }
+  .hero-stats { justify-content:center; flex-wrap:wrap; gap:1.5rem; }
+  .hero-scroll { display:none; }
+  .hero-card { 
+    margin:1.5rem auto 0; 
+    min-width:unset; 
+    width:calc(100% - 3rem); 
+    max-width:300px;
+  }
+  .hero::before { display:none; }
+  
+  .ag { grid-template-columns:1fr; }
+  .aic { max-width:360px; margin:0 auto; }
+  .abadge { right:0; }
+  .tg { grid-template-columns:1fr; }
+  .tc.wide { grid-column:span 1; }
+  .cog { grid-template-columns:1fr; }
+}
+
+/* ── RESPONSIVE: MOBILE ── */
+@media(max-width:600px) {
+  .hero-title { font-size:2.4rem; }
+  .hero-actions { 
+    flex-direction:column; 
+    width:100%; 
+    gap:1rem; 
+  }
+  .btn-dk { 
+    justify-content:center; 
+    width:100%; 
+    text-align:center; 
+    padding:.9rem 1.5rem; 
+  }
+  .hero-stats { gap:1.5rem; justify-content:center; }
+  .hero-card { 
+    flex-direction:column; 
+    text-align:center; 
+    gap:1rem; 
+    padding:1.5rem 1.2rem; 
+    width:calc(100% - 2rem); 
+    max-width:none;
+  }
+  .hci { 
+    width:48px; 
+    height:48px; 
+    margin:0 auto 0.5rem; 
+  }
+  .sc { flex:0 0 82vw; }
+  .sr { gap:.5rem; }
+}
+  </style>
 </head>
-
-<body class="relative text-gray-800">
-
-    <div class="relative z-10">
-        <header class="fixed w-full shadow-md rounded-b-2xl z-50" style="background-color: #c8b08c;">
-            <div class="container mx-auto flex justify-between items-center px-6 py-2">
-
-               
-                <div class="flex items-center space-x-3 -ml-6">
-                    <img src="tela.png" alt="Logo Bellitia Pelle" class="h-14 w-14 object-contain" />
-                    <h1 class="text-2xl font-bold text-black" id="site-name">Bellitia Pelle</h1>
-                </div>
-
-
-                <nav class="space-x-6 hidden md:flex">
-                    <a href="#sobre" class="text-black hover:text-gray-700">Sobre</a>
-                    <a href="#servicos" class="text-black hover:text-gray-700">Serviços</a>
-                    <a href="#depoimentos" class="text-black hover:text-gray-700">Depoimentos</a>
-                    <a href="#contato" class="text-black hover:text-gray-700">Contato</a>
-                </nav>
-
-                <button id="menu-toggle" class="md:hidden text-black text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-
-            <div id="mobile-menu"
-                class="md:hidden bg-white absolute top-0 left-0 w-full h-screen bg-opacity-80 transform translate-x-full transition-all duration-300">
-                <div class="flex justify-end p-4">
-                    <button id="close-menu" class="text-black text-2xl">
-                        ✕
-                    </button>
-                </div>
-                <div class="flex flex-col items-center">
-                    <a href="#sobre" class="py-4 text-2xl text-black hover:black">Sobre</a>
-                    <a href="#servicos" class="py-4 text-2xl text-black hover:text-black">Serviços</a>
-                    <a href="#depoimentos" class="py-4 text-2xl text-black hover:text-black">Depoimentos</a>
-                    <a href="#contato" class="py-4 text-2xl text-black hover:text-black">Contato</a>
-                </div>
-            </div>
-        </header>
-
-
-
-
-        <section class="relative h-screen flex items-center justify-center text-white text-center overflow-hidden">
-            <div class="absolute inset-0 bg-[url('clarice.png')] bg-contain bg-no-repeat bg-center opacity-40 z-0">
-            </div>
-            <div class="relative z-10 flex flex-col items-center animate-fade-in-up mt-80">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-black " id="hero-title">Aqui, sua beleza e confiança
-                    são a minha prioridade.</h2>
-                <p class="text-black  italic mb-4" id="hero-description">
-                    Venha realçar a sua beleza sem exageros
-                </p>
-
-
-                <a href="#contato" class="text-black font-bold py-3 px-6 rounded-full text-lg transition mt-40"
-                    style="background-color: #c8b08c;" id="hero-cta">
-                    Agende com Dra. Clarice Gonçalves
-                </a>
-
-        </section>
-
-
-
-        <style>
-            @keyframes fadeInUp {
-                0% {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-
-                100% {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-
-            .animate-fade-in-up {
-                animation: fadeInUp 1s ease-out forwards;
-            }
-        </style>
-
-
-
-        <section id="sobre" class="py-20 flex justify-center items-center min-h-screen">
-            <div class="max-w-3xl px-6 text-center">
-                <h3 class="text-3xl font-bold mb-4 text-gray-900" id="about-title">Sobre a Dra. Clarice</h3>
-                <p class="text-gray-700 mb-4" id="about-description">
-                <p class="mb-4">Minha trajetória na área da saúde começou muito antes da Biomedicina. Desde cedo, sou
-                    movida pela paixão por cuidar das pessoas e contribuir com seu bem-estar. Ao longo dos anos, busquei
-                    conhecimento em diversas áreas da estética, até me encontrar na estética avançada — minha verdadeira
-                    vocação.</p>
-                <div class="mb-6">
-                    <p class="mb-4">
-                        Sou formada em <strong>Biomedicina</strong> pela <strong>Universidade Regional de Blumenau
-                            (FURB)</strong> e possuo especialização em <strong>Estética Avançada</strong>. Ao longo da
-                        minha formação, me dediquei a cursos e técnicas que complementam e aprofundam minha prática,
-                        como:
-                    </p>
-                    <ul class="list-none pl-0 space-y-2 text-sm italic">
-                        <li><strong>PIT 100 – Point of Injection of Toxin</strong>, com o renomado anatomista Dr. Alex
-                            de Souza</li>
-                        <li><strong>Intradermoterapia e Intramuscular</strong>, pela Faculdade Ana Carolina Puga</li>
-                        <li><strong>Sculptra</strong>, pelo Instituto Nacional Ensino Saúde e Pesquisa</li>
-                        <li><strong>PEIM</strong>, pelo Instituto Corporal Academy</li>
-                        <li><strong>Técnicas avançadas de peeling químico</strong>, com Márcio Guidoni</li>
-                    </ul>
-
-
-
-
-
-
-                </div>
-                <p class="mb-4">Meu compromisso é proporcionar resultados naturais e personalizados, respeitando a
-                    individualidade de cada paciente e promovendo autoestima, saúde e bem-estar. Acredito que estética
-                    vai muito além da aparência: é sobre sentir-se bem consigo mesmo.</p>
-                <p class="mb-4">Com ampla experiência e constante atualização, ofereço tratamentos como preenchimento
-                    facial, bioestimuladores, toxina botulínica (botox), entre outros. Cada atendimento é feito com
-                    cuidado, sensibilidade e embasamento técnico, sempre priorizando a segurança e a satisfação de quem
-                    confia no meu trabalho.</p>
-
-            </div>
-        </section>
-
-
-
-        <section id="servicos" class="py-20">
-            <div class="container mx-auto px-6 text-center">
-                <h3 class="text-3xl font-bold mb-12 text-gray-900" id="services-title">
-                    Tratamentos Estéticos
-                </h3>
-
-                <div id="carousel" class="flex overflow-x-scroll scroll-smooth space-x-4 no-scrollbar">
-                    <style>
-                        .no-scrollbar::-webkit-scrollbar {
-                            display: none;
-                        }
-
-                        .no-scrollbar {
-                            -ms-overflow-style: none;
-                            scrollbar-width: none;
-                        }
-                    </style>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="preventivo.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service8-title">Botox Terço Superior </h4>
-                        <p class="text-black" id="service8-description">O Botox no terço superior suaviza rugas na
-                            testa, entre as sobrancelhas e ao redor dos olhos, relaxando os músculos e prevenindo novas
-                            linhas.</p>
-
-                    </div>
-                    <div
-                        class="relative min-w-[300px] max-w-sm snap-start rounded-2xl  p-6 overflow-hidden text-center bg-white/transparência">
-                        <img src="botox.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service7-title">Botox Nefertiti</h4>
-                        <p class="text-black" id="service7-description">Redefine o contorno facial e promove efeito
-                            lifting na região do pescoço.</p>
-
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-bg-transparent">
-                        <img src="full.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service8-title">Botox Full Face</h4>
-                        <p class="text-black" id="service8-description">O Botox suaviza rugas na testa, entre as
-                            sobrancelhas, ao redor dos olhos, melhora o contorno da mandíbula e reduz as marcas no
-                            queixo.</p>
-
-                    </div>
-
-
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="mesotox.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service8-title">Mesotox </h4>
-                        <p class="text-black" id="service8-description">O mesotox combina toxina botulínica com
-                            mesoterapia, aplicado superficialmente para melhorar a textura da pele, reduzir poros,
-                            oleosidade e rugas finas. Ideal para rosto, pescoço e colo.</p>
-
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-bg-transparent">
-                        <img src="preventivo.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service8-title">Botox Preventivo</h4>
-                        <p class="text-black" id="service8-description">O Botox preventivo evita rugas e linhas de
-                            expressão em pessoas a partir dos 20 anos. Relaxa os músculos, preserva a pele jovem e
-                            retarda o envelhecimento, com resultados sutis e naturais.</p>
-
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="harmonizacao.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service9-title">Harmonização Facial</h4>
-                        <p class="text-black" id="service9-description">Equilíbrio dos traços com técnicas de
-                            preenchimento e bioestimuladores.</p>
-
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="labio.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service10-title">Preenchimento Labial</h4>
-                        <p class="text-black" id="service10-description">Volume e contorno natural para lábios mais
-                            expressivos e hidratados.</p>
-
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="fox.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service11-title">Fox Eyes</h4>
-                        <p class="text-black" id="service11-description">O procedimento Fox Eyes é uma técnica de
-                            harmonização facial que visa alongar e levantar o olhar, criando um efeito de "olhos de
-                            raposa".</p>
-
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="bioestim1.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service12-title">Bioestimuladores de Colágeno</h4>
-                        <p class="text-black" id="service12-description">Estimula a produção natural de colágeno para
-                            uma pele mais firme.</p>
-
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="toxina .jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Toxina Botulínica</h4>
-                        <p class="text-black" id="service13-description">Suavização de linhas de expressão, promovendo
-                            rejuvenescimento.</p>
-
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="malar.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Malar 3D</h4>
-                        <p class="text-black" id="service13-description">O Malar 3D é uma técnica de harmonização facial
-                            com fios de PDO que levantam e definem as maçãs do rosto. Promove efeito lifting imediato e
-                            estimula o colágeno. Pode ser associado ao ácido hialurônico para potencializar os
-                            resultados.</p>
-
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="mandibula.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Mandíbula 3D</h4>
-                        <p class="text-black" id="service13-description">A técnica Mandíbula 3D usa fios de PDO e/ou
-                            ácido hialurônico para definir o contorno da mandíbula. Gera sustentação, efeito lifting e
-                            estimula colágeno. </p>
-
-                    </div>
-
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="reconstrucao.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Recuperação de Perdas Estruturais da
-                            Face</h4>
-                        <p class="text-black" id="service13-description">A recuperação de perdas estruturais usa
-                            preenchedores como ácido hialurônico para restaurar volume e contorno facial. Trata áreas
-                            como maçãs do rosto, mandíbula, têmporas e sulcos. </p>
-
-                    </div>
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <video autoplay muted loop playsinline class="mx-auto mb-4 rounded-xl">
-                            <source src="micro.mp4" type="video/mp4" />
-                            Seu navegador não suporta vídeo HTML5.
-                        </video>
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Microagulhamento</h4>
-                        <p class="text-black" id="service13-description">Revitalize sua pele com o microagulhamento:
-                            melhora textura, reduz cicatrizes, linhas finas e manchas, estimulando o colágeno para um
-                            rosto mais jovem e uniforme. </p>
-
-                    </div>
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="masoterapia.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Mesoterapia</h4>
-                        <p class="text-black" id="service13-description">Mesoterapia é um tratamento minimamente
-                            invasivo que aplica ativos diretamente na pele para tratar gordura localizada, celulite,
-                            flacidez e queda de cabelo de forma eficaz e personalizada. </p>
-
-                    </div>
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="miscroagulhamento.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Microagulhamento</h4>
-                        <p class="text-black" id="service13-description">A revitalização labial com microagulhamento
-                            estimula colágeno e melhora a circulação, deixando os lábios mais hidratados, firmes e
-                            suaves. Suaviza linhas finas e melhora a textura com efeito natural e recuperação rápida
-                        </p>
-
-                    </div>
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="limpeza.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Limpeza de Pele</h4>
-                        <p class="text-black" id="service13-description">A limpeza de pele profunda remove impurezas,
-                            cravos e células mortas, deixando a pele mais saudável, luminosa e pronta para outros
-                            tratamentos. Ideal para prevenção do envelhecimento precoce. </p>
-
-                    </div>
-                    <div class="relative min-w-[300px] snap-start rounded-xl p-6 overflow-hidden text-center" style="background-color: #e2d8c4;">
-                        <video autoplay muted loop playsinline class="mx-auto mb-4 rounded-xl">
-                            <source src="depilacao.mp4" type="video/mp4" />
-                            Seu navegador não suporta vídeo HTML5.
-                        </video>
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Depilação a Laser Ácrus</h4>
-                        <p class="text-black" id="service13-description">O laser Acros oferece depilação rápida, segura
-                            e eficaz, com resultados duradouros desde as primeiras sessões. Indicado para todos os tipos
-                            de pele, possui sistema de resfriamento que garante conforto.</p>
-                    </div>
-                    
-                    
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <img src="ata.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Peeling Químico, ATA</h4>
-                        <p class="text-black" id="service13-description">O Peeling Químico ATA utiliza ácido
-                            tricloroacético para renovar a pele, tratando rugas, manchas, cicatrizes e poros dilatados.
-                            O procedimento estimula a produção de colágeno e elastina, resultando em uma pele mais firme
-                            e rejuvenescida.</p>
-
-                    </div>
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl p-6 overflow-hidden text-center bg-transparent">
-                        <img src="papada.jpg" class="mx-auto mb-4" />
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">Lipo Enzimática de Papada</h4>
-                        <p class="text-black" id="service13-description">A Lipoenzimática de Papada é um tratamento não
-                            invasivo que utiliza enzimas lipolíticas para reduzir a gordura na região da papada e
-                            melhorar a firmeza da pele. A técnica quebra as células de gordura, que são eliminadas pelo
-                            corpo ao longo do tempo.</p>
-
-                    </div>
-                    <div
-                        class="relative min-w-[300px] snap-start rounded-xl  p-6 overflow-hidden text-center bg-transparent">
-                        <video autoplay muted loop playsinline class="mx-auto mb-4 rounded-xl">
-                            <source src="peim.mp4" type="video/mp4" />
-                            Seu navegador não suporta vídeo HTML5.
-                        </video>
-                        <h4 class="text-xl font-semibold mb-2" id="service13-title">PEIM </h4>
-                        <p class="text-black" id="service13-description"> Este procedimento utiliza injeções precisas
-                            para eliminar micro vasos indesejados, melhorando a aparência das pernas e proporcionando
-                            mais confiança. </p>
-
-                    </div>
-
-        </section>
-
-
-
-        <script>
-            const carousel = document.getElementById("carousel");
-            let scrollAmount = 0;
-            const scrollStep = 300;
-            const intervalTime = 4000;
-
-            let carouselInterval = setInterval(() => {
-                if (scrollAmount + scrollStep >= carousel.scrollWidth - carousel.clientWidth) {
-                    scrollAmount = 0;
-                } else {
-                    scrollAmount += scrollStep;
-                }
-
-                carousel.scrollTo({
-                    left: scrollAmount,
-                    behavior: "smooth",
-                });
-            }, intervalTime);
-
-            let isPaused = false;
-
-
-            const stopCarousel = () => {
-                clearInterval(carouselInterval);
-                isPaused = true;
-            };
-
-
-            const startCarousel = () => {
-                carouselInterval = setInterval(() => {
-                    if (scrollAmount + scrollStep >= carousel.scrollWidth - carousel.clientWidth) {
-                        scrollAmount = 0;
-                    } else {
-                        scrollAmount += scrollStep;
-                    }
-
-                    carousel.scrollTo({
-                        left: scrollAmount,
-                        behavior: "smooth",
-                    });
-                }, intervalTime);
-                isPaused = false;
-            };
-
-
-            carousel.addEventListener("touchstart", () => {
-                if (!isPaused) {
-                    stopCarousel();
-                }
-            });
-
-            carousel.addEventListener("touchend", () => {
-                if (isPaused) {
-                    startCarousel();
-                }
-            });
-
-
-            carousel.addEventListener("click", () => {
-                if (isPaused) {
-                    startCarousel();
-                } else {
-                    stopCarousel();
-                }
-            });
-        </script>
-
-
-
-
-        <script>
-            function showPrice(id) {
-                const priceElement = document.getElementById(id);
-                priceElement.classList.toggle('hidden');
-                priceElement.classList.toggle('opacity-0');
-                priceElement.classList.toggle('scale-50');
-                priceElement.classList.add('transition-all', 'duration-500', 'ease-out');
-            }
-        </script>
-
-
-        <section id="depoimentos" class="pt-4 pb-20 px-4 max-w-5xl mx-auto text-black" data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-center mb-10">Depoimentos</h2>
-            <div class="grid md:grid-cols-2 gap-8 text-sm">
-                <blockquote class="bg-white p-6 rounded-xl shadow text-black italic">"Amando o resultado, super índico.
-                    Achei o tratamento super tranquilo."<br><span
-                        class="block text-right mt-2 not-italic font-semibold">— Josi</span></blockquote>
-                <blockquote class="bg-white p-6 rounded-xl shadow text-black italic">“Ótimo atendimento,profissional
-                    excelente com transparência e honestidade. Na depilação a laser na primeira sessão já diminuiu 60%
-                    dos pelos nas axilas fiquei maravilhada”<br><span
-                        class="block text-right mt-2 not-italic font-semibold">— Carla</span></blockquote>
-                <blockquote class="bg-white p-6 rounded-xl shadow text-black italic">“Profissional atenciosa e um
-                    ambiente muito agradável. Já fiz alguns procedimentos e amei os resultados. Super
-                    recomendo!”<br><span class="block text-right mt-2 not-italic font-semibold">— Larissa</span>
-                </blockquote>
-                <blockquote class="bg-white p-6 rounded-xl shadow text-black italic">“Profissional maravilhosa, fiquei
-                    com boca de boneca!"<br><span class="block text-right mt-2 not-italic font-semibold">— Erica</span>
-                </blockquote>
-                <blockquote class="bg-white p-6 rounded-xl shadow text-black italic">"Conseguui amenizar muito minhas
-                    linhas de expressão, com o preenchimento fiquei com a boca perfeita e sem rugas."<br><span
-                        class="block text-right mt-2 not-italic font-semibold">— Isolete</span>
-                </blockquote>
-            </div>
-        </section>
-
-
-        <section id="contato" class="py-20 bg-rose-20">
-            <div class="container mx-auto px-6 text-center">
-                <p class="mb-8 text-black" id="contact-description">
-                    Nosso consultório oferece um ambiente moderno, elegante
-                    e acolhedor, cuidadosamente projetado para garantir
-                    conforto e privacidade aos pacientes. Contamos com duas
-                    unidades de atendimento: <strong>Dalbérgia, Ibirama, na Rua do
-                        Loyd, 79</strong>, e outra em <strong>Blumenau, na Rua Jacó Brueckheimer,
-                        425 - 4º andar</strong>.
-                </p>
-
-                <style>
-                    @keyframes fade-in-up {
-                        0% {
-                            opacity: 0;
-                            transform: translateY(40px);
-                        }
-
-                        100% {
-                            opacity: 1;
-                            transform: translateY(0);
-                        }
-                    }
-
-                    .fade-in-up {
-                        animation: fade-in-up 1.0s ease-out forwards;
-                    }
-                </style>
-
-                <div
-                    class="relative min-w-[300px] snap-start rounded-xl p-6 overflow-hidden text-center bg-transparent w-full max-w-[600px] mx-auto">
-
-                    <video id="videoReveal" autoplay muted loop playsinline
-                        class="mx-auto mb-4 rounded-xl w-full h-auto invisible">
-                        <source src="studio.mp4" type="video/mp4" />
-                        Seu navegador não suporta vídeo HTML5.
-                    </video>
-                </div>
-
-                <script>
-                    const video = document.getElementById("videoReveal");
-
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.remove("fade-in-up");
-                                void entry.target.offsetWidth; 
-                                entry.target.classList.remove("invisible");
-                                entry.target.classList.add("fade-in-up");
-                            } else {
-                                entry.target.classList.add("invisible");
-                                entry.target.classList.remove("fade-in-up");
-                            }
-                        });
-                    }, {
-                        threshold: 0.4
-                    });
-
-                    observer.observe(video);
-                </script>
-
-
-
-                <p class="mb-8 "></p>
-                <p class="mb-8 text-black" id="contact-description">
-                    Visite meu Instagram e WhatsApp para agendamentos e novidades!
-                </p>
-
-                <div class="flex justify-center items-center gap-6 mt-6">
-                    <a href="https://wa.me/554799267620?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20tratamentos%20estéticos."
-                        target="_blank"
-                        class="w-14 h-14 flex items-center justify-center rounded-full bg-amber-50 hover:bg-amber-50 shadow-md hover:shadow-lg">
-                        <i class="fab fa-whatsapp text-black text-2xl"></i>
-                    </a>
-
-                    <a href="https://www.instagram.com/esteticabellitiapelle" target="_blank"
-                        class="w-14 h-14 flex items-center justify-center rounded-full bg-amber-50 hover:bg-amber-50 transition-shadow shadow-md hover:shadow-lg">
-                        <i class="fab fa-instagram text-black text-2xl"></i>
-                    </a>
-
-                    <a href="https://maps.app.goo.gl/7NchX6LeCrCwCacX6" target="_blank"
-                        class="w-14 h-14 flex items-center justify-center rounded-full bg-amber-50 bg-cover bg-center transition-shadow shadow-md hover:shadow-lg"
-                        style="background-image: url('loca.jpg');">
-                        <i class="fas fa-map-marker-alt text-black text-xl"></i>
-                    </a>
-
-                    <a href="https://maps.app.goo.gl/c2qCk4PREk3UjwPD8" target="_blank"
-                        class="w-14 h-14 flex items-center justify-center rounded-full bg-amber-50 bg-cover bg-center transition-shadow shadow-md hover:shadow-lg"
-                        style="background-image: url('loca.jpg');">
-                        <i class="fas fa-map-marker-alt text-black text-xl"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <footer class="text-black py-6 text-center rounded-tl-xl rounded-tr-xl" style="background-color: #c8b08c;">
-            <p id="footer-text">&copy; Bellitia Pelle. Todos os direitos reservados.</p>
-        </footer>
-
-
-        <script>
-            function updateList(listId, items) {
-                const list = document.getElementById(listId);
-                list.innerHTML = "";
-                items.forEach(item => {
-                    const li = document.createElement("li");
-                    li.textContent = item;
-                    list.appendChild(li);
-                });
-            }
-
-            const menuToggleButton = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const closeMenuButton = document.getElementById('close-menu');
-            const mobileLinks = document.querySelectorAll('#mobile-menu a');
-
-            menuToggleButton.addEventListener('click', () => {
-                mobileMenu.classList.remove('translate-x-full');
-            });
-
-            closeMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
-            });
-
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href').slice(1);
-                    const targetSection = document.getElementById(targetId);
-
-                    if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-
-                    mobileMenu.classList.add('translate-x-full');
-                });
-            });
-        </script>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <img src="tela.png" alt="Bellitia Pelle">
+    <span class="nav-logo-txt">Bellitia Pelle</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Tratamentos</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="https://wa.me/554799267620?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20tratamentos%20estéticos." target="_blank" class="nav-cta">Agendar consulta</a>
+  <button class="hbg" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob" id="mob">
+  <a href="#sobre" class="ml">Sobre</a>
+  <a href="#servicos" class="ml">Tratamentos</a>
+  <a href="#depoimentos" class="ml">Depoimentos</a>
+  <a href="#contato" class="ml">Contato</a>
+  <a href="https://wa.me/554799267620" target="_blank" class="mcta ml">Agendar consulta</a>
+</div>
+
+<!-- HERO -->
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag r">Estética Avançada · Blumenau</div>
+    <h1 class="hero-title r d1">Sua beleza,<br><em>redescoberta</em><br>com precisão.</h1>
+    <p class="hero-sub r d2">Biomédica especializada em estética avançada. Tratamentos personalizados, resultados naturais e um cuidado que começa no acolhimento.</p>
+    <div class="hero-actions r d3">
+      <a href="https://wa.me/554799267620?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20tratamentos%20estéticos." target="_blank" class="btn-dk">
+        <i class="fab fa-whatsapp"></i> Agendar com Dra. Clarice
+      </a>
+      <a href="#servicos" class="btn-gh">Ver tratamentos <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hero-stats r d3">
+      <div><span class="sv">+5</span><span class="sl">Anos de experiência</span></div>
+      <div><span class="sv">18+</span><span class="sl">Tratamentos</span></div>
+      <div><span class="sv">100%</span><span class="sl">Resultado natural</span></div>
+    </div>
+  </div>
+  
+  <!-- Card centralizado -->
+  <div class="hero-card r d3">
+    <div class="hci"><i class="fas fa-award"></i></div>
+    <div>
+      <div class="hct">Biomédica certificada</div>
+      <div class="hcs">FURB · Esp. em Estética</div>
+    </div>
+  </div>
+  
+  <div class="hero-scroll"><div class="sbar"></div><span>Role para baixo</span></div>
+</section>
+
+  </div>
+</section>
+
+<div class="orn"><div class="orn-l"></div><div class="orn-s">✦</div><div class="orn-l"></div></div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="w">
+    <div class="ag">
+      <div class="aic r">
+        <div class="aif"><img src="clarice.png" alt="Dra. Clarice Gonçalves"></div>
+        <div class="abadge"><strong>+5</strong><span>anos de exp.</span></div>
+      </div>
+      <div class="at">
+        <div class="st r">Sobre</div>
+        <h2 class="sh r d1">Dra. Clarice<br><em>Gonçalves</em></h2>
+        <p class="r d2">Minha trajetória na área da saúde começou muito antes da Biomedicina. Sou movida pela paixão por cuidar das pessoas — e foi na estética avançada que encontrei minha verdadeira vocação.</p>
+        <p class="r d2">Formada em <strong>Biomedicina</strong> pela <strong>FURB</strong> e especializada em Estética Avançada, ofereço um atendimento técnico, humanizado e em constante atualização.</p>
+        <div class="creds r d3">
+          <h4>Formações &amp; Certificações</h4>
+          <ul class="cl">
+            <li><strong>PIT 100</strong> — Point of Injection of Toxin, com Dr. Alex de Souza</li>
+            <li><strong>Intradermoterapia e Intramuscular</strong> — Faculdade Ana Carolina Puga</li>
+            <li><strong>Sculptra</strong> — Instituto Nacional Ensino Saúde e Pesquisa</li>
+            <li><strong>PEIM</strong> — Instituto Corporal Academy</li>
+            <li><strong>Peeling Químico Avançado</strong> — com Márcio Guidoni</li>
+          </ul>
+        </div>
+        <p class="r d3">Acredito que estética vai além da aparência: é sobre <em>sentir-se bem consigo mesmo</em>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="orn" style="padding-top:0"><div class="orn-l"></div><div class="orn-s">✦</div><div class="orn-l"></div></div>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="w">
+    <div class="st r">Tratamentos</div>
+    <h2 class="sh r d1">O que <em>oferecemos</em></h2>
+    <p class="ssub r d2">Cada procedimento é realizado com embasamento técnico, cuidado individualizado e foco em resultados naturais.</p>
+    <div class="to">
+      <div class="tr" id="tr">
+        <div class="sc"><div class="sci"><img src="preventivo.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Botox Terço Superior</h4><p class="scd">Suaviza rugas na testa, entre as sobrancelhas e ao redor dos olhos.</p></div></div>
+        <div class="sc"><div class="sci"><img src="botox.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Botox Nefertiti</h4><p class="scd">Redefine o contorno facial e promove efeito lifting no pescoço.</p></div></div>
+        <div class="sc"><div class="sci"><img src="full.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Botox Full Face</h4><p class="scd">Tratamento completo: testa, olhos, mandíbula e queixo.</p></div></div>
+        <div class="sc"><div class="sci"><img src="mesotox.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Mesotox</h4><p class="scd">Toxina botulínica com mesoterapia para textura, poros e oleosidade.</p></div></div>
+        <div class="sc"><div class="sci"><img src="preventivo.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Botox Preventivo</h4><p class="scd">Retarda o envelhecimento com resultados sutis e naturais a partir dos 20 anos.</p></div></div>
+        <div class="sc"><div class="sci"><img src="harmonizacao.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Harmonização Facial</h4><p class="scd">Equilíbrio dos traços com preenchimento e bioestimuladores.</p></div></div>
+        <div class="sc"><div class="sci"><img src="labio.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Preenchimento Labial</h4><p class="scd">Volume e contorno natural para lábios mais expressivos e hidratados.</p></div></div>
+        <div class="sc"><div class="sci"><img src="fox.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Fox Eyes</h4><p class="scd">Alonga e levanta o olhar com efeito sofisticado e marcante.</p></div></div>
+        <div class="sc"><div class="sci"><img src="bioestim1.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Bioestimuladores de Colágeno</h4><p class="scd">Estimula colágeno natural para pele mais firme e jovem.</p></div></div>
+        <div class="sc"><div class="sci"><img src="malar.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Malar 3D</h4><p class="scd">Fios de PDO que definem as maçãs do rosto com lifting imediato.</p></div></div>
+        <div class="sc"><div class="sci"><img src="mandibula.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Mandíbula 3D</h4><p class="scd">Definição do contorno com fios PDO e ácido hialurônico.</p></div></div>
+        <div class="sc"><div class="sci"><img src="reconstrucao.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Recuperação Estrutural da Face</h4><p class="scd">Restauração de volume em maçãs, têmporas e sulcos.</p></div></div>
+        <div class="sc"><div class="sci"><video autoplay muted loop playsinline><source src="micro.mp4" type="video/mp4"></video></div><div class="scb"><h4 class="sct">Microagulhamento</h4><p class="scd">Reduz cicatrizes e linhas finas estimulando colágeno para pele mais jovem.</p></div></div>
+        <div class="sc"><div class="sci"><img src="masoterapia.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Mesoterapia</h4><p class="scd">Ativos injetados diretamente na pele para gordura localizada, celulite e flacidez.</p></div></div>
+        <div class="sc"><div class="sci"><img src="limpeza.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Limpeza de Pele</h4><p class="scd">Remove impurezas, cravos e células mortas para pele luminosa.</p></div></div>
+        <div class="sc"><div class="sci"><video autoplay muted loop playsinline><source src="depilacao.mp4" type="video/mp4"></video></div><div class="scb"><h4 class="sct">Depilação a Laser Acrus</h4><p class="scd">Rápida e segura para todos os tipos de pele, com sistema de resfriamento.</p></div></div>
+        <div class="sc"><div class="sci"><img src="ata.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Peeling Químico ATA</h4><p class="scd">Renovação da pele com ácido tricloroacético: rugas, manchas e poros.</p></div></div>
+        <div class="sc"><div class="sci"><img src="papada.jpg" alt loading="lazy"></div><div class="scb"><h4 class="sct">Lipo Enzimática de Papada</h4><p class="scd">Enzimas lipolíticas não invasivas para reduzir gordura na papada.</p></div></div>
+        <div class="sc"><div class="sci"><video autoplay muted loop playsinline><source src="peim.mp4" type="video/mp4"></video></div><div class="scb"><h4 class="sct">PEIM</h4><p class="scd">Elimina microvasos indesejados, melhorando a aparência das pernas.</p></div></div>
+      </div>
+    </div>
+    <div class="tn">
+      <button class="tb" id="prev" aria-label="Anterior"><i class="fas fa-arrow-left"></i></button>
+      <button class="tb" id="next" aria-label="Próximo"><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="w">
+    <div class="st r">Depoimentos</div>
+    <h2 class="sh r d1">O que dizem<br><em>nossas pacientes</em></h2>
+    <div class="tg">
+      <div class="tc dk r">
+        <div class="tst"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Ótimo atendimento, profissional excelente com transparência e honestidade. Na primeira sessão a laser já diminuiu 60% dos pelos — fiquei maravilhada."</p>
+        <div class="ta">— Carla</div>
+      </div>
+      <div class="tc r d1">
+        <div class="tst"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Profissional atenciosa e ambiente muito agradável. Já fiz vários procedimentos e amei os resultados. Super recomendo!"</p>
+        <div class="ta">— Larissa</div>
+      </div>
+      <div class="tc r d2">
+        <div class="tst"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Profissional maravilhosa, fiquei com boca de boneca!"</p>
+        <div class="ta">— Erica</div>
+      </div>
+      <div class="tc r d1">
+        <div class="tst"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Amando o resultado, super indico. Achei o tratamento super tranquilo."</p>
+        <div class="ta">— Josi</div>
+      </div>
+      <div class="tc wide r d2">
+        <div class="tst"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Consegui amenizar muito minhas linhas de expressão. Com o preenchimento fiquei com a boca perfeita e sem rugas."</p>
+        <div class="ta">— Isolete</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="w">
+    <div class="cog">
+      <div class="cot">
+        <div class="st r">Contato</div>
+        <h2 class="sh r d1">Agende sua<br><em>consulta</em></h2>
+        <p class="r d2">Ambiente moderno, elegante e acolhedor, projetado para garantir conforto e privacidade.</p>
+        <div class="locs r d3">
+          <div class="li">
+            <div class="lic"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="lit"><strong>Dalbérgia · Ibirama</strong><span>Rua do Loyd, 79</span></div>
+          </div>
+          <div class="li">
+            <div class="lic"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="lit"><strong>Blumenau</strong><span>Rua Jacó Brueckheimer, 425 — 4º andar</span></div>
+          </div>
+        </div>
+        <div class="sr r d3">
+          <a href="https://wa.me/554799267620?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20tratamentos%20estéticos." target="_blank" class="sb"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+          <a href="https://www.instagram.com/esteticabellitiapelle" target="_blank" class="sb"><i class="fab fa-instagram"></i>Instagram</a>
+          <a href="https://maps.app.goo.gl/7NchX6LeCrCwCacX6" target="_blank" class="sb"><i class="fas fa-map-marker-alt"></i>Ibirama</a>
+          <a href="https://maps.app.goo.gl/c2qCk4PREk3UjwPD8" target="_blank" class="sb"><i class="fas fa-map-marker-alt"></i>Blumenau</a>
+        </div>
+      </div>
+      <div class="cvid r d2">
+        <video autoplay muted loop playsinline><source src="studio.mp4" type="video/mp4"></video>
+        <div class="cvo"><p>"Um espaço feito para você se sentir em casa."</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fb">Bellitia Pelle</div>
+  <div class="fs">Estética Avançada · Dra. Clarice Gonçalves</div>
+  <div class="fd"></div>
+</footer>
+
+<script>
+  // NAV scroll
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 50));
+
+  // Hamburger
+  const hbg = document.getElementById('hbg');
+  const mob = document.getElementById('mob');
+  hbg.addEventListener('click', () => {
+    hbg.classList.toggle('open'); mob.classList.toggle('open');
+    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.ml').forEach(l => l.addEventListener('click', () => {
+    hbg.classList.remove('open'); mob.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  // Carousel
+  const tr = document.getElementById('tr');
+  const cw = () => (tr.querySelector('.sc')?.offsetWidth || 290) + 20;
+  document.getElementById('next').addEventListener('click', () => tr.scrollBy({ left: cw(), behavior:'smooth' }));
+  document.getElementById('prev').addEventListener('click', () => tr.scrollBy({ left: -cw(), behavior:'smooth' }));
+  let auto = setInterval(() => {
+    const max = tr.scrollWidth - tr.clientWidth;
+    tr.scrollLeft >= max - 10 ? tr.scrollTo({ left:0, behavior:'smooth' }) : tr.scrollBy({ left: cw(), behavior:'smooth' });
+  }, 4500);
+  ['touchstart','mousedown'].forEach(e => tr.addEventListener(e, () => clearInterval(auto)));
+
+  // Reveal
+  const obs = new IntersectionObserver(en => en.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } }), { threshold:.1 });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+  setTimeout(() => document.querySelectorAll('.hero .r').forEach(el => el.classList.add('on')), 200);
+
+  // Prevent zoom
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  addEventListener('wheel', e => { if(e.ctrlKey) e.preventDefault(); }, { passive:false });
+  addEventListener('keydown', e => { if((e.ctrlKey||e.metaKey)&&['+','-','=','0'].includes(e.key)) e.preventDefault(); });
+</script>
+</body>
+</html>
